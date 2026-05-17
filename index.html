@@ -1074,6 +1074,236 @@ section { padding: 100px 0; }
   .nav-logo .brand { font-size: 1.4rem; }
   .nav-logo .brand-tag { font-size: 0.55rem; }
 }
+
+/* ===== Service card clickable + View Gallery link ===== */
+.service-card[data-gallery] { cursor: pointer; }
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 0.74rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  transition: var(--transition);
+}
+.service-link i { font-size: 0.7rem; transition: var(--transition); }
+.service-card:hover .service-link { color: var(--gold); }
+.service-card:hover .service-link i { transform: translateX(5px); }
+
+/* ===== Gallery Modal ===== */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 6, 12, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  overflow-y: auto;
+  padding: 50px 20px 80px;
+}
+.gallery-modal.active { opacity: 1; pointer-events: all; }
+.gallery-modal-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+.gallery-modal.active .gallery-modal-inner { transform: translateY(0); opacity: 1; }
+
+.gallery-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.gallery-modal-header .gh-eyebrow {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.gallery-modal-header h2 {
+  color: var(--ivory);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.gallery-modal-header .gh-count {
+  font-size: 0.82rem;
+  color: rgba(250, 246, 240, 0.55);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.gallery-close-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.gallery-close-btn:hover {
+  background: var(--gold);
+  color: var(--burgundy);
+  transform: rotate(90deg);
+  border-color: var(--gold);
+}
+
+.gallery-thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.gallery-thumb {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: thumbFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gallery-thumb::after {
+  content: '\f00e';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, transparent 35%, rgba(74, 18, 32, 0.85) 100%);
+  color: var(--gold);
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: var(--transition);
+}
+.gallery-thumb:hover::after { opacity: 1; }
+.gallery-thumb:hover img { transform: scale(1.08); }
+.gallery-thumb:hover { border-color: rgba(201, 168, 76, 0.3); }
+
+@keyframes thumbFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox.active { display: flex; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 85vh;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  animation: lightboxZoom 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes lightboxZoom {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(250, 246, 240, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: var(--gold);
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--gold);
+  color: var(--burgundy);
+  border-color: var(--gold);
+}
+.lightbox-close { top: 26px; right: 26px; }
+.lightbox-close:hover { transform: rotate(90deg); }
+.lightbox-prev { left: 26px; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 26px; top: 50%; transform: translateY(-50%); }
+.lightbox-prev:hover { transform: translateY(-50%) translateX(-4px); }
+.lightbox-next:hover { transform: translateY(-50%) translateX(4px); }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  background: rgba(250, 246, 240, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  padding: 8px 22px;
+  border-radius: 30px;
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 992px) {
+  .gallery-thumb-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .gallery-thumb-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gallery-modal { padding: 30px 16px 60px; }
+  .lightbox-prev, .lightbox-next { width: 44px; height: 44px; font-size: 1rem; }
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+  .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; font-size: 1rem; }
+  .gallery-close-btn { width: 44px; height: 44px; }
+}
 </style>
 </head>
 <body>
@@ -1130,35 +1360,41 @@ section { padding: 100px 0; }
     </div>
 
     <div class="services-grid">
-      <div class="service-card reveal">
+      <div class="service-card reveal" data-gallery="ballon">
         <div class="service-icon"><i class="fas fa-gem"></i></div>
-        <h3>Decorations</h3>
+        <h3>Ballon Decorations</h3>
         <p>Stage, mandap, entryway & themed setups that transform any venue into a dream space.</p>
+        <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
       </div>
-      <div class="service-card reveal" data-delay="100">
+      <div class="service-card reveal" data-delay="100" data-gallery="catering">
         <div class="service-icon"><i class="fas fa-utensils"></i></div>
         <h3>Catering</h3>
         <p>Multi-cuisine menus crafted by experienced chefs — South Indian, North Indian, Continental & more.</p>
+        <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
       </div>
-      <div class="service-card reveal" data-delay="200">
+      <div class="service-card reveal" data-delay="200" data-gallery="audiovisual">
         <div class="service-icon"><i class="fas fa-music"></i></div>
         <h3>Audio / Visual</h3>
         <p>Premium sound systems, LED walls & DJ setups tuned for crystal-clear celebrations.</p>
+        <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
       </div>
-      <div class="service-card reveal" data-delay="300">
+      <div class="service-card reveal" data-delay="300" data-gallery="photography">
         <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
         <h3>Photography</h3>
         <p>Candid stories, traditional portraits, cinematic films — captured by award-worthy talent.</p>
+        <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
       </div>
-      <div class="service-card reveal" data-delay="100">
+      <div class="service-card reveal" data-delay="100" data-gallery="floral">
         <div class="service-icon"><i class="fas fa-spa"></i></div>
         <h3>Floral Arrangements</h3>
         <p>Fresh roses, orchids & seasonal blooms from the Nilgiris — designed into breathtaking installations.</p>
+        <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
       </div>
-      <div class="service-card reveal" data-delay="200">
+      <div class="service-card reveal" data-delay="200" data-gallery="venue">
         <div class="service-icon"><i class="fas fa-archway"></i></div>
         <h3>Venue Setup</h3>
         <p>Tents, lighting, seating & full venue transformation — turnkey, on-time, stress-free.</p>
+        <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
       </div>
     </div>
   </div>
@@ -1323,7 +1559,7 @@ section { padding: 100px 0; }
         </p>
         <div class="about-signature">
           <div>
-            <div class="signature-name">Vishnu Murthy</div>
+            <div class="signature-name">M Murali</div>
             <div class="signature-role">Founder &amp; Creative Director</div>
           </div>
         </div>
@@ -1375,17 +1611,17 @@ section { padding: 100px 0; }
 
     <div class="team-grid">
       <div class="team-card reveal">
-        <div class="team-photo"><span>VM</span></div>
+        <div class="team-photo"><span>MM</span></div>
         <div class="team-info">
-          <h3>V Murali</h3>
-ng — Vishnu leads every design with a quiet eye for what makes a moment feel sacred.</p>
+          <h3>M Murali</h3>
+ Vishnu leads every design with a quiet eye for what makes a moment feel sacred.</p>
         </div>
       </div>
 
       <div class="team-card reveal" data-delay="100">
-        <div class="team-photo"><span>MR</span></div>
+        <div class="team-photo"><span>MV</span></div>
         <div class="team-info">
-          <h3>Meera Raghav</h3>
+          <h3>M Vasanthi</h3>
           <div class="team-role">Lead Event Planner</div>
           <p>Meera coordinates every logistic so flawlessly, our clients sometimes forget they're hosting at all.</p>
         </div>
@@ -1407,12 +1643,7 @@ ng — Vishnu leads every design with a quiet eye for what makes a moment feel s
           <div class="team-role">Lead Photographer</div>
           <p>Sneha sees the moments others miss — the glance, the laugh, the quiet hand-hold during the pheras.</p>
         </div>
- <<<<<<< HEAD
-          <h3>V Murali</h3>
-=======
-          <h3>Vishnu Murthy</h3>
->>>>>>> 543aad803b93ae4a3985be60cc25e360ef489691
-v>
+ 
 </section>
 
 <!-- ===== Process / Approach ===== -->
@@ -1604,6 +1835,32 @@ v>
   </div>
 </footer>
 
+<!-- ===== Gallery Modal ===== -->
+<div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+  <div class="container">
+    <div class="gallery-modal-inner">
+      <div class="gallery-modal-header">
+        <div>
+          <span class="gh-eyebrow">Our Portfolio</span>
+          <h2 id="galleryTitle">Title</h2>
+          <span class="gh-count" id="galleryCount">0 Photos</span>
+        </div>
+        <button class="gallery-close-btn" aria-label="Close gallery"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="gallery-thumb-grid" id="galleryThumbs"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+  <button class="lightbox-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+  <img id="lightboxImg" src="" alt="Gallery image" />
+  <button class="lightbox-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+</div>
+
 <!-- WhatsApp Float -->
 <a href="https://wa.me/919786945808" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
@@ -1620,6 +1877,7 @@ v>
     initScrollReveal();
     initTestimonialsSlider();
     initStatsCounter();
+    initGalleries();
     setCurrentYear();
   });
 
@@ -1782,6 +2040,155 @@ v>
   function setCurrentYear() {
     const y = document.getElementById('currentYear');
     if (y) y.textContent = new Date().getFullYear();
+  }
+
+  // ===== Gallery + Lightbox =====
+  function initGalleries() {
+    const galleries = {
+      ballon: {
+        title: 'Balloon Decorations',
+        folder: 'Ballon',
+        images: [
+          'Ballon 1.jpeg','Ballon 2.jpeg','Ballon 3.jpeg','Ballon 4.jpeg','Ballon 5.jpeg',
+          'Ballon 6.jpeg','Ballon 7.jpeg','Ballon 8.jpeg','Ballon 9.jpeg','Ballon 10.jpeg',
+          'Ballon 11.jpeg','Ballon 12.jpeg','Ballon 13.jpeg','Ballon 14.jpeg','Ballon 15.jpeg',
+          'Ballon 16.jpeg','Ballon 17.jpeg','Ballon 18.jpeg'
+        ]
+      },
+      catering: {
+        title: 'Food & Catering',
+        folder: 'Catering',
+        images: [
+          'Catering 1.jpg','Catering 2.jpg','Catering 3.jpg','Catering 4.jpg','Catering 5.jpg',
+          'Catering 6.jpg','Catering 7.jpg','Catering 8.jpg','Catering 9.jpg','Catering 10.jpg'
+        ]
+      },
+      audiovisual: {
+        title: 'Audio & Visual Systems',
+        folder: 'AudioVisual',
+        images: [
+          'AD1.jpg','AD2.jpg','AD3.jpg','AD4.jpg','AD5.jpg',
+          'AD6.jpg','AD7.jpg','AD8.jpg','AD9.jpg','AD10.jpg'
+        ]
+      },
+      photography: {
+        title: 'Photography & Videography',
+        folder: 'Photography',
+        images: [
+          'p1.jpg','p2.jpg','p3.jpg','p4.jpg','p5.jpg',
+          'p6.jpg','p7.jpg','p8.jpg','p9.jpg','p10.jpg'
+        ]
+      },
+      floral: {
+        title: 'Floral Arrangements',
+        folder: 'Floral',
+        images: [
+          'Floral 1.jpeg','Floral 2.jpeg','Floral 3.jpeg','Floral 4.jpeg','Floral 5.jpeg',
+          'Floral 6.jpeg','Floral 7.jpeg','Floral 8.jpeg','Floral 9.jpeg','Floral 10.jpeg',
+          'Floral 11.jpeg','Floral 12.jpeg','Floral 13.jpeg'
+        ]
+      },
+      venue: {
+        title: 'Venue Setup',
+        folder: 'Venue setup',
+        images: [
+          'v1.jpg','v2.jpg','v3.jpg','v4.jpg','v5.jpg',
+          'v6.jpg','v7.jpg','v8.jpg','v9.jpg','v10.jpg'
+        ]
+      }
+    };
+
+    const modal = document.getElementById('galleryModal');
+    const titleEl = document.getElementById('galleryTitle');
+    const countEl = document.getElementById('galleryCount');
+    const thumbsEl = document.getElementById('galleryThumbs');
+    if (!modal || !thumbsEl) return;
+    const closeBtn = modal.querySelector('.gallery-close-btn');
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCounter = document.getElementById('lightboxCounter');
+    const lbClose = lightbox.querySelector('.lightbox-close');
+    const lbPrev = lightbox.querySelector('.lightbox-prev');
+    const lbNext = lightbox.querySelector('.lightbox-next');
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    const buildPath = (folder, filename) =>
+      encodeURIComponent(folder) + '/' + encodeURIComponent(filename);
+
+    const openGallery = (key) => {
+      const g = galleries[key];
+      if (!g) return;
+      titleEl.textContent = g.title;
+      countEl.textContent = g.images.length + ' Photos';
+      currentImages = g.images.map(f => buildPath(g.folder, f));
+
+      thumbsEl.innerHTML = currentImages.map((src, i) => `
+        <div class="gallery-thumb" data-index="${i}" style="animation-delay:${i * 40}ms">
+          <img src="${src}" alt="${g.title} — photo ${i + 1}" loading="lazy" />
+        </div>
+      `).join('');
+
+      thumbsEl.querySelectorAll('.gallery-thumb').forEach(t => {
+        t.addEventListener('click', () => openLightbox(parseInt(t.dataset.index, 10)));
+      });
+
+      modal.classList.add('active');
+      modal.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeGallery = () => {
+      modal.classList.remove('active');
+      if (!lightbox.classList.contains('active')) document.body.style.overflow = '';
+    };
+
+    const openLightbox = (index) => {
+      if (!currentImages.length) return;
+      currentIndex = index;
+      lbImg.src = currentImages[index];
+      lbCounter.textContent = (index + 1) + ' / ' + currentImages.length;
+      lightbox.classList.add('active');
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      lbImg.src = '';
+    };
+
+    const navigate = (dir) => {
+      const next = (currentIndex + dir + currentImages.length) % currentImages.length;
+      openLightbox(next);
+    };
+
+    // Card clicks
+    document.querySelectorAll('.service-card[data-gallery]').forEach(card => {
+      card.addEventListener('click', () => openGallery(card.dataset.gallery));
+    });
+
+    closeBtn.addEventListener('click', closeGallery);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeGallery();
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => navigate(-1));
+    lbNext.addEventListener('click', () => navigate(1));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigate(-1);
+        if (e.key === 'ArrowRight') navigate(1);
+      } else if (modal.classList.contains('active')) {
+        if (e.key === 'Escape') closeGallery();
+      }
+    });
   }
 })();
 </script>

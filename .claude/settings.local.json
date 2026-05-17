@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Force \"D:\\\\VM Events\" | Where-Object { $_.PSIsContainer } | ForEach-Object { Write-Output \"FOLDER: $\\($_.Name\\)\"; Get-ChildItem -Force $_.FullName | ForEach-Object { Write-Output \"  - $\\($_.Name\\)\" } })"
+    ]
+  }
+}
