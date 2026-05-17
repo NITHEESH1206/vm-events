@@ -1304,6 +1304,237 @@ section { padding: 100px 0; }
   .lightbox-close { top: 16px; right: 16px; width: 44px; height: 44px; font-size: 1rem; }
   .gallery-close-btn { width: 44px; height: 44px; }
 }
+
+/* ===== Special Events Card (unique) ===== */
+.special-card {
+  grid-column: 1 / -1;
+  padding: 56px 40px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #4A1220 0%, #6B1A2A 45%, #8B2A3F 100%);
+  color: var(--ivory);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  text-align: center;
+}
+.special-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(201, 168, 76, 0.28), transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(229, 201, 122, 0.2), transparent 55%);
+  pointer-events: none;
+}
+.special-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255, 230, 180, 0.3) 0px, transparent 2px),
+    radial-gradient(circle at 78% 36%, rgba(255, 230, 180, 0.32) 0px, transparent 2px),
+    radial-gradient(circle at 36% 78%, rgba(255, 230, 180, 0.22) 0px, transparent 2px),
+    radial-gradient(circle at 88% 82%, rgba(255, 230, 180, 0.28) 0px, transparent 2px),
+    radial-gradient(circle at 52% 14%, rgba(255, 230, 180, 0.2) 0px, transparent 2px),
+    radial-gradient(circle at 8% 70%, rgba(255, 230, 180, 0.25) 0px, transparent 2px);
+  background-size: 180px 180px, 160px 160px, 200px 200px, 220px 220px, 240px 240px, 200px 200px;
+  pointer-events: none;
+  animation: sparkleShimmer 4.5s ease-in-out infinite;
+}
+.special-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(74, 18, 32, 0.55);
+  border-color: var(--gold);
+}
+.special-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.special-badge {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  background: var(--gold);
+  color: var(--burgundy-dark);
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 30px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.special-badge i { font-size: 0.62rem; }
+.special-icon-wrap {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  color: var(--burgundy);
+  position: relative;
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.35);
+}
+.special-icon-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border: 1px dashed rgba(201, 168, 76, 0.55);
+  border-radius: 50%;
+  animation: rotateSlow 28s linear infinite;
+}
+.special-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  color: var(--ivory);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.special-card h3 em { color: var(--gold-soft); font-style: italic; }
+.special-card > .special-content > p {
+  color: rgba(250, 246, 240, 0.82);
+  font-size: 1.02rem;
+  margin: 0 auto 28px;
+  max-width: 560px;
+}
+.special-subs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.sub-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  background: rgba(250, 246, 240, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 30px;
+  color: var(--ivory);
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.sub-pill i { color: var(--gold); font-size: 0.78rem; }
+.balloon-emoji { font-size: 0.95rem; line-height: 1; }
+.special-card:hover .sub-pill {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--gold);
+}
+.special-card .service-link {
+  color: var(--gold);
+  font-weight: 500;
+}
+.special-card:hover .service-link { color: var(--gold-soft); }
+.special-card:hover .service-link i { transform: translateX(6px); }
+
+@keyframes sparkleShimmer {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .special-card { padding: 44px 22px; }
+  .sub-pill { padding: 7px 14px; font-size: 0.7rem; letter-spacing: 1.5px; }
+  .special-badge { top: 14px; right: 14px; padding: 5px 10px; font-size: 0.62rem; }
+  .special-icon-wrap { width: 72px; height: 72px; font-size: 1.8rem; }
+}
+
+/* ===== Modal Sub-Sections (for Special Events) ===== */
+.gallery-section { margin-bottom: 50px; }
+.gallery-section:last-child { margin-bottom: 0; }
+.gallery-section-header {
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed rgba(201, 168, 76, 0.28);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.gallery-section-header h3 {
+  color: var(--gold);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.gallery-section-header p {
+  color: rgba(250, 246, 240, 0.55);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Thumb fallback (broken image — themed per section so it still looks intentional) */
+.gallery-thumb.thumb-fallback {
+  background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px;
+  cursor: default;
+  position: relative;
+}
+.gallery-thumb.thumb-fallback img { display: none; }
+.gallery-thumb.thumb-fallback::after { display: none; }
+.gallery-thumb.thumb-fallback .fb-icon {
+  font-size: 2.4rem;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.gallery-thumb.thumb-fallback .fb-emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+.gallery-thumb.thumb-fallback .fb-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold-soft);
+  font-size: 0.92rem;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
+.gallery-thumb.thumb-fallback:hover img { transform: none; }
+
+/* Per-section fallback theming */
+.gallery-thumb.thumb-fallback[data-theme="surprise"] {
+  background: linear-gradient(135deg, #6B1A2A 0%, #C9A84C 100%);
+}
+.gallery-thumb.thumb-fallback[data-theme="games"] {
+  background: linear-gradient(135deg, #2C2C2C 0%, #6B1A2A 100%);
+}
+.gallery-thumb.thumb-fallback[data-theme="balloons"] {
+  background: linear-gradient(135deg, #8B4762 0%, #E5C97A 100%);
+}
+.gallery-thumb.thumb-fallback[data-theme="balloons"] .fb-label,
+.gallery-thumb.thumb-fallback[data-theme="surprise"] .fb-label { color: var(--ivory); }
 </style>
 </head>
 <body>
@@ -1395,6 +1626,22 @@ section { padding: 100px 0; }
         <h3>Venue Setup</h3>
         <p>Tents, lighting, seating & full venue transformation — turnkey, on-time, stress-free.</p>
         <span class="service-link">View Gallery <i class="fas fa-arrow-right"></i></span>
+      </div>
+
+      <!-- ===== Unique "Special Events" Card ===== -->
+      <div class="special-card reveal" data-gallery="special">
+        <span class="special-badge"><i class="fas fa-star"></i> Exclusive</span>
+        <div class="special-content">
+          <div class="special-icon-wrap"><i class="fas fa-wand-magic-sparkles"></i></div>
+          <h3>Special <em>Events</em></h3>
+          <p>Beyond the ordinary — bespoke experiences designed for the moments you'll remember for a lifetime.</p>
+          <div class="special-subs">
+            <span class="sub-pill"><i class="fas fa-gift"></i> Surprise Events</span>
+            <span class="sub-pill"><i class="fas fa-dice"></i> Indoor Games</span>
+            <span class="sub-pill"><span class="balloon-emoji">🎈</span> Helium Balloons</span>
+          </div>
+          <span class="service-link">Explore Special Events <i class="fas fa-arrow-right"></i></span>
+        </div>
       </div>
     </div>
   </div>
@@ -1847,7 +2094,7 @@ section { padding: 100px 0; }
         </div>
         <button class="gallery-close-btn" aria-label="Close gallery"><i class="fas fa-times"></i></button>
       </div>
-      <div class="gallery-thumb-grid" id="galleryThumbs"></div>
+      <div id="galleryThumbs"></div>
     </div>
   </div>
 </div>
@@ -2095,6 +2342,50 @@ section { padding: 100px 0; }
           'v1.jpg','v2.jpg','v3.jpg','v4.jpg','v5.jpg',
           'v6.jpg','v7.jpg','v8.jpg','v9.jpg','v10.jpg'
         ]
+      },
+      special: {
+        title: 'Special Events',
+        sections: [
+          {
+            title: 'Surprise Events',
+            subtitle: 'Reveals & once-in-a-lifetime moments',
+            theme: 'surprise',
+            fallbackIcon: 'fas fa-gift',
+            folder: 'suprise event',
+            images: [
+              '392ae3045ee322f1cbed57d9ed8c9889.jpg',
+              '51cc3bdd5506e7f15237f9c922124944.jpg',
+              '532d7bbfcd0feb96822b1b19d027e15c.jpg',
+              '54cf6393d067b5fa54d7cc4850e6068f.jpg',
+              '7acac98fbf0417f509b4d106df5295b9.jpg'
+            ]
+          },
+          {
+            title: 'Indoor Games',
+            subtitle: 'Energy & laughter for every age',
+            theme: 'games',
+            fallbackIcon: 'fas fa-dice',
+            folder: 'indoor games',
+            images: [
+              '0edaa26876dc894e216787a463eb54ec.jpg',
+              '1172dcbeb2455acb06b7c18ac278f62f.jpg',
+              '31fc244eda51cd8147142352e6984cb3.jpg',
+              '62a6b074a22d8a486ed114a28bd51201.jpg',
+              '695e1976068159e46abf69dcfac58965.jpg',
+              'fc63e8ace4d7414a232770abc81b6ffe.jpg'
+            ]
+          },
+          {
+            title: 'Helium Balloons',
+            subtitle: 'Floating colors that lift any mood',
+            theme: 'balloons',
+            fallbackEmoji: '🎈',
+            folder: 'helium balloon',
+            images: [
+              'h1.jpg', 'h2.jpg', 'h3.jpg', 'h4.jpg', 'h5.jpg', 'h6.jpg', 'h7.jpg'
+            ]
+          }
+        ]
       }
     };
 
@@ -2118,21 +2409,88 @@ section { padding: 100px 0; }
     const buildPath = (folder, filename) =>
       encodeURIComponent(folder) + '/' + encodeURIComponent(filename);
 
+    const thumbHTML = (src, alt, idx, opts) => {
+      opts = opts || {};
+      const theme = opts.theme ? ` data-theme="${opts.theme}"` : '';
+      const fbLabel = opts.fbLabel || alt;
+      const fbIcon = opts.fbIcon || '';
+      const fbEmoji = opts.fbEmoji || '';
+      return `
+        <div class="gallery-thumb" data-index="${idx}"${theme}
+             data-fb-label="${fbLabel}" data-fb-icon="${fbIcon}" data-fb-emoji="${fbEmoji}"
+             style="animation-delay:${idx * 40}ms">
+          <img src="${src}" alt="${alt}" loading="lazy" />
+        </div>`;
+    };
+
     const openGallery = (key) => {
       const g = galleries[key];
       if (!g) return;
       titleEl.textContent = g.title;
-      countEl.textContent = g.images.length + ' Photos';
-      currentImages = g.images.map(f => buildPath(g.folder, f));
 
-      thumbsEl.innerHTML = currentImages.map((src, i) => `
-        <div class="gallery-thumb" data-index="${i}" style="animation-delay:${i * 40}ms">
-          <img src="${src}" alt="${g.title} — photo ${i + 1}" loading="lazy" />
-        </div>
-      `).join('');
+      if (g.sections) {
+        // Sectioned gallery (Special Events)
+        currentImages = [];
+        let html = '';
+        g.sections.forEach(section => {
+          const startIdx = currentImages.length;
+          // Build paths: use local folder if specified, otherwise treat as full URLs
+          const sectionImages = section.folder
+            ? section.images.map(f => buildPath(section.folder, f))
+            : section.images;
+          const sectionThumbs = sectionImages.map((src, i) => {
+            currentImages.push(src);
+            const labelText = (section.labels && section.labels[i]) || section.title;
+            return thumbHTML(src, `${section.title} — photo ${i + 1}`, startIdx + i, {
+              theme: section.theme,
+              fbLabel: labelText,
+              fbIcon: section.fallbackIcon || '',
+              fbEmoji: section.fallbackEmoji || ''
+            });
+          }).join('');
+          html += `
+            <div class="gallery-section">
+              <div class="gallery-section-header">
+                <h3>${section.title}</h3>
+                <p>${section.subtitle || ''}</p>
+              </div>
+              <div class="gallery-thumb-grid">${sectionThumbs}</div>
+            </div>`;
+        });
+        thumbsEl.innerHTML = html;
+        countEl.textContent = currentImages.length + ' Photos · ' + g.sections.length + ' Categories';
+      } else {
+        // Flat gallery (existing folder-based galleries)
+        currentImages = g.images.map(f => buildPath(g.folder, f));
+        const thumbs = currentImages.map((src, i) =>
+          thumbHTML(src, `${g.title} — photo ${i + 1}`, i, { fbLabel: g.title })
+        ).join('');
+        thumbsEl.innerHTML = `<div class="gallery-thumb-grid">${thumbs}</div>`;
+        countEl.textContent = currentImages.length + ' Photos';
+      }
 
+      // Click → open lightbox
       thumbsEl.querySelectorAll('.gallery-thumb').forEach(t => {
-        t.addEventListener('click', () => openLightbox(parseInt(t.dataset.index, 10)));
+        t.addEventListener('click', () => {
+          if (t.classList.contains('thumb-fallback')) return;
+          openLightbox(parseInt(t.dataset.index, 10));
+        });
+      });
+
+      // Image error → swap to themed fallback (icon/emoji + label + section gradient)
+      thumbsEl.querySelectorAll('.gallery-thumb img').forEach(img => {
+        img.addEventListener('error', () => {
+          const parent = img.parentElement;
+          const label = parent.dataset.fbLabel || img.alt || 'Photo';
+          const icon = parent.dataset.fbIcon;
+          const emoji = parent.dataset.fbEmoji;
+          parent.classList.add('thumb-fallback');
+          let visual = '';
+          if (emoji) visual = `<span class="fb-emoji">${emoji}</span>`;
+          else if (icon) visual = `<i class="${icon} fb-icon"></i>`;
+          else visual = `<i class="fas fa-image fb-icon"></i>`;
+          parent.innerHTML = visual + `<span class="fb-label">${label}</span>`;
+        });
       });
 
       modal.classList.add('active');
@@ -2163,8 +2521,8 @@ section { padding: 100px 0; }
       openLightbox(next);
     };
 
-    // Card clicks
-    document.querySelectorAll('.service-card[data-gallery]').forEach(card => {
+    // Card clicks — any element with data-gallery (service cards + special card)
+    document.querySelectorAll('[data-gallery]').forEach(card => {
       card.addEventListener('click', () => openGallery(card.dataset.gallery));
     });
 
