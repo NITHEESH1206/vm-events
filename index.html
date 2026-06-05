@@ -1504,6 +1504,219 @@ section { padding: 100px 0; }
   text-transform: uppercase;
 }
 
+/* ===== Review CTA buttons under testimonials ===== */
+.testimonials-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 38px;
+}
+.btn-google {
+  background: rgba(250, 246, 240, 0.08);
+  color: var(--ivory);
+  border: 1.5px solid rgba(250, 246, 240, 0.45);
+}
+.btn-google:hover {
+  background: var(--ivory);
+  color: var(--burgundy);
+  border-color: var(--ivory);
+  transform: translateY(-2px);
+}
+.btn-google i {
+  color: #ea4335;
+  font-size: 1rem;
+}
+.btn-google:hover i { color: #ea4335; }
+
+/* User-submitted review badge */
+.testimonial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: var(--burgundy-dark);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.testimonial-badge i { font-size: 0.62rem; }
+
+/* ===== Review Modal ===== */
+.review-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 6, 12, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px;
+  overflow-y: auto;
+}
+.review-modal.active { opacity: 1; pointer-events: all; }
+.review-modal-content {
+  max-width: 580px;
+  width: 100%;
+  background: var(--ivory);
+  border-radius: var(--radius-md);
+  padding: 48px 42px;
+  position: relative;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+  border-top: 4px solid var(--gold);
+}
+.review-modal.active .review-modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+.review-modal-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--burgundy);
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.review-modal-content h2 em { font-style: italic; color: var(--gold); }
+.review-modal-content > div > p {
+  color: var(--charcoal-soft);
+  margin-bottom: 26px;
+  font-size: 0.98rem;
+}
+.review-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid rgba(107, 26, 42, 0.15);
+  color: var(--burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+.review-close:hover {
+  background: var(--burgundy);
+  color: var(--gold);
+  transform: rotate(90deg);
+}
+
+/* Form styling (scoped to review modal) */
+.review-modal .rev-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.review-modal .rev-group { margin-bottom: 18px; }
+.review-modal .rev-group label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--charcoal-soft);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.review-modal .rev-control {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(107, 26, 42, 0.18);
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  color: var(--charcoal);
+  transition: var(--transition);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.review-modal .rev-control:focus {
+  outline: none;
+  border-color: var(--burgundy);
+  box-shadow: 0 0 0 3px rgba(107, 26, 42, 0.08);
+}
+.review-modal textarea.rev-control { resize: vertical; min-height: 110px; line-height: 1.6; }
+.review-modal .rev-submit {
+  width: 100%;
+  margin-top: 6px;
+  border: 1.5px solid var(--burgundy);
+}
+
+/* Star rating */
+.rating-stars {
+  display: flex;
+  gap: 8px;
+  font-size: 1.7rem;
+  color: rgba(107, 26, 42, 0.2);
+}
+.rating-stars i {
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.rating-stars i.active { color: var(--gold); }
+.rating-stars i:hover { transform: scale(1.15); }
+
+/* Success state */
+.review-success { display: none; text-align: center; padding: 14px 0; }
+.review-success.show { display: block; animation: fadeIn 0.5s ease; }
+.review-success .success-icon {
+  font-size: 4rem;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: block;
+}
+.review-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--burgundy);
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.review-success p {
+  color: var(--charcoal-soft);
+  margin: 0 auto 26px;
+  font-size: 0.98rem;
+  max-width: 420px;
+}
+.success-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-done {
+  background: transparent;
+  color: var(--burgundy);
+  border: 1.5px solid rgba(107, 26, 42, 0.3);
+  padding: 14px 28px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-done:hover {
+  background: var(--burgundy);
+  color: var(--ivory);
+  border-color: var(--burgundy);
+}
+
+@media (max-width: 600px) {
+  .review-modal-content { padding: 40px 24px 30px; }
+  .review-modal-content h2 { font-size: 1.7rem; }
+  .review-modal .rev-row { grid-template-columns: 1fr; }
+  .testimonials-actions { flex-direction: column; align-items: stretch; }
+  .testimonials-actions .btn { width: 100%; }
+}
+
 /* Thumb fallback (broken image — themed per section so it still looks intentional) */
 .gallery-thumb.thumb-fallback {
   background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
@@ -2090,6 +2303,15 @@ section { padding: 100px 0; }
         <button class="slider-dot" aria-label="Slide 9"></button>
         <button class="slider-dot" aria-label="Slide 10"></button>
       </div>
+
+      <div class="testimonials-actions">
+        <button class="btn btn-primary" id="openReviewForm">
+          <i class="fas fa-pen"></i> Write a Review
+        </button>
+        <a href="https://search.google.com/local/writereview?q=VM+Events+Decorations+Ooty" class="btn btn-google" target="_blank" rel="noopener">
+          <i class="fab fa-google"></i> Review us on Google
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -2214,6 +2436,74 @@ section { padding: 100px 0; }
   <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
 </div>
 
+<!-- ===== Review Modal ===== -->
+<div class="review-modal" id="reviewModal" role="dialog" aria-modal="true">
+  <div class="review-modal-content">
+    <button class="review-close" aria-label="Close"><i class="fas fa-times"></i></button>
+
+    <div id="reviewFormWrap">
+      <h2>Share Your <em>Experience</em></h2>
+      <p>Your words help other families discover their perfect celebration partner.</p>
+
+      <form id="reviewForm" novalidate>
+        <div class="rev-row">
+          <div class="rev-group">
+            <label>Your Name *</label>
+            <input type="text" name="name" class="rev-control" placeholder="Jane Doe" required />
+          </div>
+          <div class="rev-group">
+            <label>Event Type *</label>
+            <select name="event" class="rev-control" required>
+              <option value="">Select…</option>
+              <option>Wedding</option>
+              <option>Birthday</option>
+              <option>Engagement</option>
+              <option>Baby Shower</option>
+              <option>Corporate Event</option>
+              <option>Surprise Event</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="rev-group">
+          <label>Location (optional)</label>
+          <input type="text" name="location" class="rev-control" placeholder="Ooty, Coonoor, Coimbatore..." />
+        </div>
+        <div class="rev-group">
+          <label>Your Rating *</label>
+          <div class="rating-stars" id="ratingStars">
+            <i class="fas fa-star" data-rating="1"></i>
+            <i class="fas fa-star" data-rating="2"></i>
+            <i class="fas fa-star" data-rating="3"></i>
+            <i class="fas fa-star" data-rating="4"></i>
+            <i class="fas fa-star" data-rating="5"></i>
+          </div>
+          <input type="hidden" name="rating" id="ratingValue" value="5" />
+        </div>
+        <div class="rev-group">
+          <label>Your Review *</label>
+          <textarea name="review" class="rev-control" rows="5" placeholder="Tell us about your celebration..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark rev-submit">
+          <i class="fas fa-paper-plane"></i> Submit Review
+        </button>
+      </form>
+    </div>
+
+    <div class="review-success" id="reviewSuccess">
+      <i class="fas fa-check-circle success-icon"></i>
+      <h3>Thank You!</h3>
+      <p>Your review has been added. Would you also share it on Google so other families can find us too?</p>
+      <div class="success-actions">
+        <a href="https://search.google.com/local/writereview?q=VM+Events+Decorations+Ooty" class="btn btn-primary" target="_blank" rel="noopener">
+          <i class="fab fa-google"></i> Post on Google
+        </a>
+        <button class="btn btn-done" id="reviewDone">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Instagram Float -->
 <a href="https://www.instagram.com/vmballondecoration?igsh=MW56dzJ1YmNtOW00Yw==" class="instagram-float" target="_blank" rel="noopener" aria-label="Follow on Instagram">
   <i class="fab fa-instagram"></i>
@@ -2233,9 +2523,11 @@ section { padding: 100px 0; }
     initMobileMenu();
     initScrollSpy();
     initScrollReveal();
+    loadStoredReviews();      // must run BEFORE the slider so it picks up extra slides
     initTestimonialsSlider();
     initStatsCounter();
     initGalleries();
+    initReviewForm();
     setCurrentYear();
   });
 
@@ -2398,6 +2690,130 @@ section { padding: 100px 0; }
   function setCurrentYear() {
     const y = document.getElementById('currentYear');
     if (y) y.textContent = new Date().getFullYear();
+  }
+
+  // ===== Reviews (localStorage-backed) =====
+  const REVIEWS_KEY = 'vm_user_reviews';
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function loadStoredReviews() {
+    let stored = [];
+    try { stored = JSON.parse(localStorage.getItem(REVIEWS_KEY) || '[]'); } catch (e) {}
+    if (!Array.isArray(stored) || !stored.length) return;
+
+    const track = document.querySelector('.testimonials-track');
+    const dotsContainer = document.querySelector('.slider-controls');
+    if (!track || !dotsContainer) return;
+
+    // Prepend newest first
+    stored.slice().reverse().forEach(r => {
+      const rating = Math.max(1, Math.min(5, parseInt(r.rating, 10) || 5));
+      const div = document.createElement('div');
+      div.className = 'testimonial';
+      div.innerHTML =
+        '<span class="testimonial-badge"><i class="fas fa-user"></i> Verified Review</span>' +
+        '<div class="testimonial-stars">' + '★'.repeat(rating) + '☆'.repeat(5 - rating) + '</div>' +
+        '<p class="testimonial-quote">' + escapeHtml(r.review) + '</p>' +
+        '<div class="testimonial-author">' +
+          '<span class="author-name">' + escapeHtml(r.name) + '</span>' +
+          '<span class="author-event">' + escapeHtml(r.event) +
+            (r.location ? ' · ' + escapeHtml(r.location) : '') +
+          '</span>' +
+        '</div>';
+      track.insertBefore(div, track.firstChild);
+
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot';
+      dot.setAttribute('aria-label', 'Verified review');
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function initReviewForm() {
+    const openBtn = document.getElementById('openReviewForm');
+    const modal = document.getElementById('reviewModal');
+    if (!openBtn || !modal) return;
+
+    const closeBtn = modal.querySelector('.review-close');
+    const form = document.getElementById('reviewForm');
+    const formWrap = document.getElementById('reviewFormWrap');
+    const successWrap = document.getElementById('reviewSuccess');
+    const doneBtn = document.getElementById('reviewDone');
+    const stars = document.getElementById('ratingStars');
+    const ratingInput = document.getElementById('ratingValue');
+
+    let currentRating = 5;
+    const paintStars = (n) => {
+      stars.querySelectorAll('i').forEach((star, i) => {
+        star.classList.toggle('active', i < n);
+      });
+    };
+    const setRating = (n) => {
+      currentRating = n;
+      ratingInput.value = n;
+      paintStars(n);
+    };
+    stars.querySelectorAll('i').forEach(star => {
+      star.addEventListener('click', () => setRating(parseInt(star.dataset.rating, 10)));
+      star.addEventListener('mouseenter', () => paintStars(parseInt(star.dataset.rating, 10)));
+    });
+    stars.addEventListener('mouseleave', () => paintStars(currentRating));
+    setRating(5);
+
+    const openModal = () => {
+      modal.classList.add('active');
+      formWrap.style.display = 'block';
+      successWrap.classList.remove('show');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      // If a review was just submitted, reload so it appears in the slider rotation
+      if (formWrap.style.display === 'none') {
+        setTimeout(() => location.reload(), 200);
+      }
+    };
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    if (doneBtn) doneBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = {
+        name: form.name.value.trim(),
+        event: form.event.value,
+        location: form.location.value.trim(),
+        rating: parseInt(form.rating.value, 10) || 5,
+        review: form.review.value.trim(),
+        date: Date.now()
+      };
+      if (!data.name || !data.event || !data.review || data.review.length < 10) {
+        if (!data.name) form.name.focus();
+        else if (!data.event) form.event.focus();
+        else form.review.focus();
+        return;
+      }
+
+      let stored = [];
+      try { stored = JSON.parse(localStorage.getItem(REVIEWS_KEY) || '[]'); } catch (e) {}
+      stored.push(data);
+      try { localStorage.setItem(REVIEWS_KEY, JSON.stringify(stored)); } catch (e) {}
+
+      formWrap.style.display = 'none';
+      successWrap.classList.add('show');
+      form.reset();
+      setRating(5);
+    });
   }
 
   // ===== Gallery + Lightbox =====
