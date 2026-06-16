@@ -1529,6 +1529,29 @@ section { padding: 100px 0; }
   margin: 0 auto;
   min-height: 280px;
 }
+
+/* "Write a Review" CTA under the widget */
+.reviews-cta {
+  max-width: 720px;
+  margin: 50px auto 0;
+  text-align: center;
+  padding: 36px 30px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  box-shadow: var(--shadow-sm);
+}
+.reviews-cta p {
+  color: var(--charcoal-soft);
+  margin-bottom: 22px;
+  font-size: 1rem;
+}
+.reviews-cta p strong { color: var(--burgundy); font-weight: 600; }
+.reviews-cta .btn i { color: #ea4335; font-size: 1rem; }
+.reviews-cta .btn:hover i { color: var(--gold); }
+@media (max-width: 600px) {
+  .reviews-cta { padding: 28px 20px; margin-top: 40px; }
+}
 .elfsight-placeholder {
   background: var(--white);
   border-radius: var(--radius-md);
@@ -2246,179 +2269,27 @@ section { padding: 100px 0; }
   </div>
 </section>
 
-<!-- ===== Testimonials ===== -->
-<section class="bg-burgundy">
+<!-- ===== Reviews (Live from Google via Elfsight) ===== -->
+<section class="bg-cream" id="reviews">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-eyebrow" style="color:var(--gold-soft);">Kind Words</span>
+      <span class="google-eyebrow"><i class="fab fa-google"></i> Reviews</span>
       <h2 class="section-title">Love Letters From Our <em>Clients</em></h2>
-    </div>
-
-    <div class="testimonials-slider reveal">
-      <div class="testimonials-track">
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            VM Events turned our hilltop wedding into something out of a dream. The floral mandap, the
-            lighting, the food — every guest is still talking about it. Truly grateful for the team's
-            warmth and craftsmanship.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Priya & Arjun Ramesh</span>
-            <span class="author-event">Wedding · Coonoor</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            We hired VM for our daughter's first birthday and they exceeded every expectation. The
-            pastel theme was magical and the catering was loved by every family member. Booked them
-            again for the engagement.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Lakshmi Subramanian</span>
-            <span class="author-event">Birthday · Ooty</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            Our corporate annual day was flawless — sound, lighting, food, decor — everything ran
-            like clockwork. Communication was excellent throughout. Highly recommend VM Events for any
-            professional gathering.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Karthik Iyer</span>
-            <span class="author-event">Corporate Event · Coimbatore</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            The helium balloon arrangement for our son's third birthday was beyond beautiful. Vishnu and his
-            team understood our pastel-blue vision instantly and the photos turned out picture-perfect.
-            Worth every rupee.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Anitha & Suresh Krishnan</span>
-            <span class="author-event">Birthday · Ooty</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            We planned a surprise 25th anniversary for my parents and VM Events made it unforgettable.
-            The candle pathway, the live counter, the soft music — my mother cried happy tears. Thank you
-            for treating it like your own family event.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Divya Menon</span>
-            <span class="author-event">Surprise Anniversary · Coonoor</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            Booked VM for our engagement and the floral backdrop was straight out of Pinterest. The food
-            was hot, the team was punctual, and everything stayed within budget. Already recommended to
-            three friends.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Sahana & Vikram Pillai</span>
-            <span class="author-event">Engagement · Ooty</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            I was sceptical about hiring an event company for a simple baby shower, but VM made it feel
-            grand without being over-the-top. The indoor games for the kids were the highlight — parents
-            still message me about it.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Meera Balan</span>
-            <span class="author-event">Baby Shower · Ooty</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            From the very first call I felt heard. Meera planned every minute of our two-day wedding
-            and the candid photography is something we'll treasure forever. They are the heart and soul
-            behind our happiest day.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Aishwarya & Rohan Nair</span>
-            <span class="author-event">Wedding · Ooty</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            Our office Diwali celebration was the talk of the company. The decor, the snacks, the audio
-            setup — VM handled all of it within two days of confirmation. Reliable team, sharp execution,
-            zero stress for us.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Rajesh Venkatesan</span>
-            <span class="author-event">Diwali Office Event · Coimbatore</span>
-          </div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote">
-            We hired VM for a destination engagement at a tea estate in Coonoor — and they nailed every
-            detail despite the remote location. The fairy-light canopy at sunset was magical. Highly,
-            highly recommend.
-          </p>
-          <div class="testimonial-author">
-            <span class="author-name">Nandini & Aravind Raj</span>
-            <span class="author-event">Engagement · Coonoor</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="slider-arrows">
-        <button class="slider-arrow prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-arrow next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-
-      <div class="slider-controls">
-        <button class="slider-dot active" aria-label="Slide 1"></button>
-        <button class="slider-dot" aria-label="Slide 2"></button>
-        <button class="slider-dot" aria-label="Slide 3"></button>
-        <button class="slider-dot" aria-label="Slide 4"></button>
-        <button class="slider-dot" aria-label="Slide 5"></button>
-        <button class="slider-dot" aria-label="Slide 6"></button>
-        <button class="slider-dot" aria-label="Slide 7"></button>
-        <button class="slider-dot" aria-label="Slide 8"></button>
-        <button class="slider-dot" aria-label="Slide 9"></button>
-        <button class="slider-dot" aria-label="Slide 10"></button>
-      </div>
-
-      <div class="testimonials-actions">
-        <button class="btn btn-primary" id="openReviewForm">
-          <i class="fas fa-pen"></i> Write a Review
-        </button>
-        <a href="https://search.google.com/local/writereview?q=VM+Events+Decorations+Ooty" class="btn btn-google" target="_blank" rel="noopener">
-          <i class="fab fa-google"></i> Review us on Google
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Live Google Reviews (Elfsight Widget) ===== -->
-<section class="bg-cream" id="google-reviews">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="google-eyebrow"><i class="fab fa-google"></i> Live From Google</span>
-      <h2 class="section-title">Real Reviews, <em>Real Time</em></h2>
+      <p class="section-subtitle">
+        Every review here is a real review from our Google Business Profile — synced live, updated automatically as new ones come in.
+      </p>
     </div>
 
     <!-- Elfsight Google Reviews | VM Events & Decorations -->
     <div class="elfsight-widget-wrap reveal">
       <div class="elfsight-app-bce0e4e7-23b3-4096-8b00-95c8aa35fef5" data-elfsight-app-lazy></div>
+    </div>
+
+    <div class="reviews-cta reveal">
+      <p>Loved working with us? <strong>Share your experience</strong> — your review will appear on this page automatically.</p>
+      <a href="https://search.google.com/local/writereview?q=VM+Events+Decorations+Ooty" class="btn btn-dark" target="_blank" rel="noopener">
+        <i class="fab fa-google"></i> Write a Review
+      </a>
     </div>
   </div>
 </section>
@@ -2543,74 +2414,6 @@ section { padding: 100px 0; }
   <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
 </div>
 
-<!-- ===== Review Modal ===== -->
-<div class="review-modal" id="reviewModal" role="dialog" aria-modal="true">
-  <div class="review-modal-content">
-    <button class="review-close" aria-label="Close"><i class="fas fa-times"></i></button>
-
-    <div id="reviewFormWrap">
-      <h2>Share Your <em>Experience</em></h2>
-      <p>Your words help other families discover their perfect celebration partner.</p>
-
-      <form id="reviewForm" novalidate>
-        <div class="rev-row">
-          <div class="rev-group">
-            <label>Your Name *</label>
-            <input type="text" name="name" class="rev-control" placeholder="Jane Doe" required />
-          </div>
-          <div class="rev-group">
-            <label>Event Type *</label>
-            <select name="event" class="rev-control" required>
-              <option value="">Select…</option>
-              <option>Wedding</option>
-              <option>Birthday</option>
-              <option>Engagement</option>
-              <option>Baby Shower</option>
-              <option>Corporate Event</option>
-              <option>Surprise Event</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="rev-group">
-          <label>Location (optional)</label>
-          <input type="text" name="location" class="rev-control" placeholder="Ooty, Coonoor, Coimbatore..." />
-        </div>
-        <div class="rev-group">
-          <label>Your Rating *</label>
-          <div class="rating-stars" id="ratingStars">
-            <i class="fas fa-star" data-rating="1"></i>
-            <i class="fas fa-star" data-rating="2"></i>
-            <i class="fas fa-star" data-rating="3"></i>
-            <i class="fas fa-star" data-rating="4"></i>
-            <i class="fas fa-star" data-rating="5"></i>
-          </div>
-          <input type="hidden" name="rating" id="ratingValue" value="5" />
-        </div>
-        <div class="rev-group">
-          <label>Your Review *</label>
-          <textarea name="review" class="rev-control" rows="5" placeholder="Tell us about your celebration..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-dark rev-submit">
-          <i class="fas fa-paper-plane"></i> Submit Review
-        </button>
-      </form>
-    </div>
-
-    <div class="review-success" id="reviewSuccess">
-      <i class="fas fa-check-circle success-icon"></i>
-      <h3>Thank You!</h3>
-      <p>Your review has been added. Would you also share it on Google so other families can find us too?</p>
-      <div class="success-actions">
-        <a href="https://search.google.com/local/writereview?q=VM+Events+Decorations+Ooty" class="btn btn-primary" target="_blank" rel="noopener">
-          <i class="fab fa-google"></i> Post on Google
-        </a>
-        <button class="btn btn-done" id="reviewDone">Done</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Instagram Float -->
 <a href="https://www.instagram.com/vmballondecoration?igsh=MW56dzJ1YmNtOW00Yw==" class="instagram-float" target="_blank" rel="noopener" aria-label="Follow on Instagram">
   <i class="fab fa-instagram"></i>
@@ -2630,11 +2433,8 @@ section { padding: 100px 0; }
     initMobileMenu();
     initScrollSpy();
     initScrollReveal();
-    loadStoredReviews();      // must run BEFORE the slider so it picks up extra slides
-    initTestimonialsSlider();
     initStatsCounter();
     initGalleries();
-    initReviewForm();
     setCurrentYear();
   });
 
